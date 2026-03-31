@@ -11,7 +11,7 @@ const createBookTable = async () => {
     created_at TIMESTAMP DEFAULT NOW()
 );`;
   try {
-    pool.query(queryText);
+    await pool.query(queryText);
     console.log("Book table created if not exists");
   } catch (error) {
     console.log("Error creating books table: ", error);
