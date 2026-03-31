@@ -22,7 +22,7 @@ app.use("/api", bookRoutes);
 //Error handling middleware
 app.use(errorHandling);
 
-createBookTable();
+await createBookTable();
 
 //Testing Postgres connection
 app.get("/", async (req, res) => {
