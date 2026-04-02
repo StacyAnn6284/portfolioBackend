@@ -1,7 +1,6 @@
 //Standarized response function
 
 import {
-  bookSearchService,
   createBookService,
   deleteBookService,
   getAllBooksService,
@@ -80,11 +79,11 @@ export const deleteBook = async (req, res, next) => {
   }
 };
 
-export const searchBooks = async (req, res, next) => {
-  try {
-    const books = await bookSearchService();
-    handleRespose(res, 200, "Books fetched successfully", books);
-  } catch (err) {
-    next(err);
-  }
-};
+// export const searchBooks = async (req, res, next) => {
+//   try {
+//     const books = await bookSearchService();
+//     handleRespose(res, 200, "Books fetched successfully", books);
+//   } catch (err) {
+//     next(err);
+//   }
+// };
