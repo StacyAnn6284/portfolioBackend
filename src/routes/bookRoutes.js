@@ -10,11 +10,10 @@ import {
 
 const router = express.Router();
 
-router.post("/book", createBook);
-router.get("/book", getAllBooks);
-router.get("/book/:id", getBookById);
-router.put("/book/:id", updateBook);
-router.delete("/book/:id", deleteBook);
-router.get("/book/search/:param", searchBooks);
+router.post("/", createBook);
+router.get("/", getAllBooks);
+router.get("/:id", getBookById);
+router.put("/:id", updateBook);
+router.delete("/:id", deleteBook);
 
 export default router;

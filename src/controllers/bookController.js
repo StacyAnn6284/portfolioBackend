@@ -6,6 +6,7 @@ import {
   deleteBookService,
   getAllBooksService,
   getBookByIdService,
+  searchBookService,
   updateBookService,
 } from "../models/bookModel.js";
 
@@ -29,6 +30,12 @@ export const createBook = async (req, res, next) => {
 
 export const getAllBooks = async (req, res, next) => {
   try {
+    const search = req.query.search;
+
+    if (search) {
+      const books = await searchBookService(search);
+      return handleRespose(res, 200, "Search results", books);
+    }
     const books = await getAllBooksService();
     handleRespose(res, 200, "Books fetched successfully", books);
   } catch (err) {

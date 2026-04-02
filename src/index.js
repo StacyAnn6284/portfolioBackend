@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 //Routes
-app.use("/api", bookRoutes);
+app.use("/api/books", bookRoutes);
 
 //Error handling middleware
 app.use(errorHandling);
