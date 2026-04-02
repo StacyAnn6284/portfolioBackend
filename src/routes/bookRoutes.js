@@ -4,7 +4,6 @@ import {
   deleteBook,
   getAllBooks,
   getBookById,
-  searchBooks,
   updateBook,
 } from "../controllers/bookController.js";
 
