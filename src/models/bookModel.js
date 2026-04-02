@@ -42,3 +42,10 @@ export const searchBookService = async (query) => {
   );
   return result.rows;
 };
+
+export const filterBooksByStatus = async (query) => {
+  const result = await pool.query("SELECT * FROM books WHERE status = $1", [
+    query,
+  ]);
+  return result.rows;
+};

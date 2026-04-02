@@ -3,6 +3,7 @@
 import {
   createBookService,
   deleteBookService,
+  filterBooksByStatus,
   getAllBooksService,
   getBookByIdService,
   searchBookService,
@@ -30,10 +31,13 @@ export const createBook = async (req, res, next) => {
 export const getAllBooks = async (req, res, next) => {
   try {
     const search = req.query.search;
-
+    const filter = req.query.filter;
     if (search) {
       const books = await searchBookService(search);
       return handleRespose(res, 200, "Search results", books);
+    } else if (filter) {
+      const books = await filterBooksByStatus(filter);
+      return handleRespose(res, 200, "Filter results", books);
     }
     const books = await getAllBooksService();
     handleRespose(res, 200, "Books fetched successfully", books);
