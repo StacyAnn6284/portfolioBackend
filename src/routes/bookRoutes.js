@@ -4,6 +4,7 @@ import {
   deleteBook,
   getAllBooks,
   getBookById,
+  searchBooks,
   updateBook,
 } from "../controllers/bookController.js";
 
@@ -14,5 +15,6 @@ router.get("/book", getAllBooks);
 router.get("/book/:id", getBookById);
 router.put("/book/:id", updateBook);
 router.delete("/book/:id", deleteBook);
+router.search("/book/:param", searchBooks);
 
 export default router;

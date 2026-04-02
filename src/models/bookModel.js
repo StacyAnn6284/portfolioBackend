@@ -33,3 +33,11 @@ export const deleteBookService = async (id) => {
   );
   return result.rows[0];
 };
+
+export const bookSearchService = async (param) => {
+  const result = await pool.query(
+    "SELECT * FROM books WHERE book LIKE $1 OR author LIKE $1",
+    [param],
+  );
+  return (await result).rows;
+};
