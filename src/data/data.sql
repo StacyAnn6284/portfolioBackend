@@ -3,6 +3,7 @@
     title VARCHAR(100) NOT NULL,
     author VARCHAR(100) NOT NULL,
     status VARCHAR(100) NOT NULL CHECK (status IN ('not started', 'in progress', 'completed')),
-    notes VARCHAR(500)
+    notes VARCHAR(500),
+    rating INTEGER NULL CHECK (rating BETWEEN 1 AND 5)
     created_at TIMESTAMP DEFAULT NOW()
 );`
