@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 import pool from "./config/db.js";
 import bookRoutes from "./routes/bookRoutes.js";
 import errorHandling from "./middlewares/errorHandler.js";
-import createBookTable from "./data/createBookTable.js";
 
 dotenv.config();
 
@@ -12,7 +11,6 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 //Middlewares
-
 app.use(express.json());
 app.use(cors());
 
@@ -21,8 +19,6 @@ app.use("/api/books", bookRoutes);
 
 //Error handling middleware
 app.use(errorHandling);
-
-//await createBookTable();
 
 //Testing Postgres connection
 app.get("/", async (req, res) => {

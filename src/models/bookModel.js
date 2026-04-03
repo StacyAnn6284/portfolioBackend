@@ -10,18 +10,18 @@ export const getBookByIdService = async (id) => {
   return result.rows[0];
 };
 
-export const createBookService = async (book, author, status, notes) => {
+export const createBookService = async (title, author, status, notes) => {
   const result = await pool.query(
-    "INSERT INTO books (book, author, status, notes) VALUES ($1, $2, $3, $4) RETURNING *",
-    [book, author, status, notes],
+    "INSERT INTO books (title, author, status, notes) VALUES ($1, $2, $3, $4) RETURNING *",
+    [title, author, status, notes],
   );
   return result.rows[0];
 };
 
-export const updateBookService = async (id, book, author, status, notes) => {
+export const updateBookService = async (id, title, author, status, notes) => {
   const result = await pool.query(
-    "UPDATE books SET  book=$1, author=$2, status=$3, notes=$4 where id=$5 RETURNING *",
-    [book, author, status, notes, id],
+    "UPDATE books SET  title=$1, author=$2, status=$3, notes=$4 where id=$5 RETURNING *",
+    [title, author, status, notes, id],
   );
   return result.rows[0];
 };
@@ -37,7 +37,7 @@ export const deleteBookService = async (id) => {
 export const searchBookService = async (query) => {
   const search = `%${query}%`;
   const result = await pool.query(
-    "SELECT * FROM books WHERE book ILIKE $1 OR author ILIKE $1",
+    "SELECT * FROM books WHERE title ILIKE $1 OR author ILIKE $1",
     [search],
   );
   return result.rows;

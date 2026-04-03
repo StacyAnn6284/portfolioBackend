@@ -19,9 +19,9 @@ const handleRespose = (res, status, message, data = null) => {
 };
 
 export const createBook = async (req, res, next) => {
-  const { book, author, status, notes } = req.body;
+  const { title, author, status, notes } = req.body;
   try {
-    const newBook = await createBookService(book, author, status, notes);
+    const newBook = await createBookService(title, author, status, notes);
     handleRespose(res, 201, "Book created successfully", newBook);
   } catch (err) {
     next(err);
@@ -57,11 +57,11 @@ export const getBookById = async (req, res, next) => {
 };
 
 export const updateBook = async (req, res, next) => {
-  const { book, author, status, notes } = req.body;
+  const { title, author, status, notes } = req.body;
   try {
     const updatedBook = await updateBookService(
       req.params.id,
-      book,
+      title,
       author,
       status,
       notes,
@@ -82,12 +82,3 @@ export const deleteBook = async (req, res, next) => {
     next(err);
   }
 };
-
-// export const searchBooks = async (req, res, next) => {
-//   try {
-//     const books = await bookSearchService();
-//     handleRespose(res, 200, "Books fetched successfully", books);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
