@@ -52,6 +52,7 @@ export const getBookById = async (req, res, next) => {
     if (!book) return handleRespose(res, 404, "Book not found");
     handleRespose(res, 201, "Book fetched successfully", book);
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };
