@@ -21,7 +21,13 @@ const handleRespose = (res, status, message, data = null) => {
 export const createBook = async (req, res, next) => {
   const { title, author, status, notes, rating } = req.body;
   try {
-    const newBook = await createBookService(title, author, status, notes, rating);
+    const newBook = await createBookService(
+      title,
+      author,
+      status,
+      notes,
+      rating,
+    );
     handleRespose(res, 201, "Book created successfully", newBook);
   } catch (err) {
     next(err);
@@ -66,7 +72,7 @@ export const updateBook = async (req, res, next) => {
       author,
       status,
       notes,
-      rating
+      rating,
     );
     if (!updatedBook) return handleRespose(res, 404, "Book not found");
     handleRespose(res, 201, "Book updated successfully", updatedBook);

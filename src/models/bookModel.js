@@ -10,7 +10,13 @@ export const getBookByIdService = async (id) => {
   return result.rows[0];
 };
 
-export const createBookService = async (title, author, status, notes, rating) => {
+export const createBookService = async (
+  title,
+  author,
+  status,
+  notes,
+  rating,
+) => {
   const result = await pool.query(
     "INSERT INTO books (title, author, status, notes, rating) VALUES ($1, $2, $3, $4, $5) RETURNING *",
     [title, author, status, notes, rating],
@@ -18,7 +24,14 @@ export const createBookService = async (title, author, status, notes, rating) =>
   return result.rows[0];
 };
 
-export const updateBookService = async (id, title, author, status, notes, rating) => {
+export const updateBookService = async (
+  id,
+  title,
+  author,
+  status,
+  notes,
+  rating,
+) => {
   const result = await pool.query(
     "UPDATE books SET  title=$1, author=$2, status=$3, notes=$4, rating=$5 where id=$6 RETURNING *",
     [title, author, status, notes, rating, id],

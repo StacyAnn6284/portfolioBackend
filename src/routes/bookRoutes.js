@@ -6,13 +6,17 @@ import {
   getBookById,
   updateBook,
 } from "../controllers/bookController.js";
+import {
+  validateBook,
+  validateBookId,
+} from "../middlewares/validators/bookValidator.js";
 
 const router = express.Router();
 
-router.post("/", createBook);
+router.post("/", validateBook, createBook);
 router.get("/", getAllBooks);
-router.get("/:id", getBookById);
-router.put("/:id", updateBook);
-router.delete("/:id", deleteBook);
+router.get("/:id", validateBookId, getBookById);
+router.put("/:id", validateBook, updateBook);
+router.delete("/:id", validateBookId, deleteBook);
 
 export default router;
