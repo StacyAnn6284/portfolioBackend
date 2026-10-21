@@ -20,4 +20,9 @@ pool.on("connect", () => {
   console.log("Connection pool established with Database");
 });
 
+pool.on("error", (err, client) => {
+  console.error("Unexpected error on idle database client", err);
+  process.exit(-1);
+});
+
 export default pool;

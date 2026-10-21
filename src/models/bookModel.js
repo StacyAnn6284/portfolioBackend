@@ -17,11 +17,22 @@ export const createBookService = async (
   notes,
   rating,
 ) => {
-  const result = await pool.query(
-    "INSERT INTO books (title, author, status, notes, rating) VALUES ($1, $2, $3, $4, $5) RETURNING *",
-    [title, author, status, notes, rating],
-  );
-  return result.rows[0];
+  try {
+    const result = await pool.query(
+      "INSERT INTO books (title, author, status, notes, rating) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      [title, author, status, notes, rating],
+    );
+    return result.rows[0];
+  } catch (error) {
+    if (error.code === "23505") {
+      const customError = new Error(
+        "A book with this title and author already exists.",
+      );
+      customError.status = 400;
+      throw customError;
+    }
+    throw error;
+  }
 };
 
 export const updateBookService = async (

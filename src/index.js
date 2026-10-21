@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import pool from "./config/db.js";
 import bookRoutes from "./routes/bookRoutes.js";
 import errorHandling from "./middlewares/errorHandler.js";
+import createBookTable from "./data/createBookTable.js";
 
 dotenv.config();
 
@@ -13,6 +14,9 @@ const port = process.env.PORT || 3001;
 
 //Middlewares
 app.use(express.json());
+
+createBookTable();
+
 app.use(cors());
 
 //Routes

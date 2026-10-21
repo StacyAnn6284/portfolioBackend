@@ -5,5 +5,6 @@
     status VARCHAR(15) NOT NULL CHECK (status IN ('not started', 'in progress', 'completed')),
     notes VARCHAR(300),
     rating INTEGER NULL CHECK (rating BETWEEN 1 AND 5)
-    created_at TIMESTAMP DEFAULT NOW()
+    created_at TIMESTAMP DEFAULT NOW(),
+    updated_at TIMESTAMP DEFAULT NOW(),
 );`
